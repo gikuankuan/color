@@ -61,8 +61,8 @@
             </form>
           </td>
           <td style="width: 30%;">
-            <button class="btn btn-danger" onmousedown="add()">－</button>
-            <button class="btn btn-danger" onmousedown="plus()">＋</button>
+            <button class="btn btn-danger" onmousedown="add_op()" onmouseup="less_clo()">－</button>
+            <button class="btn btn-danger" >＋</button>
           </td>
         </tr>
         <tr>
@@ -140,23 +140,38 @@
           console.log(aa);
         }
 
-        function plus(){
-          r = document.getElementById("formControlRange").value * 1; //range的值
-          g = document.getElementById("formControlRange1").value * 1;
-          b = document.getElementById("formControlRange2").value * 1;
-          
+        
+        var timeStart, timeEnd, time; //申明全局變數
 
-
+        function getTimeNow() {
+          //獲取此刻時間
+          var now = new Date();
+          return now.getTime();
         }
+        function add_op() {
+          //滑鼠按下時觸發
+          timeStart = getTimeNow(); //獲取滑鼠按下時的時間
+          time = setInterval(function () //setInterval會每100毫秒執行一次
+          {
+            timeEnd = getTimeNow(); //也就是每100毫秒獲取一次時間
+            if (timeEnd - timeStart > 1000) {
+              //如果此時檢測到的時間與第一次獲取的時間差有1000毫秒
+              clearInterval(time); //便不再繼續重覆此函數 （clearInterval取消周期性執行）
+
+       
+                r = document.getElementById("formControlRange").value * 1; //range的值
+          document.getElementById("formControlRange").value = `${r}` - 1;
+        
+         
 
 
-
-
-
-
-
-
-
+             
+            }
+          }, 100);
+        }
+        function less_clo() {
+          clearInterval(time); //如果按下時間不到1000毫秒便彈起，
+        }
 
         //切換顏色的功能
         function colorful() {
