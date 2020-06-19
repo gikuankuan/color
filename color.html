@@ -36,84 +36,134 @@
   </head>
   <body style="background-color: bisque;">
     <!-- 顏色的地方可以試著用變數去做替換 -->
-    
-      <div style="width: 60%;margin:auto ;padding:60px;">
-      <div id="a" class="a" ></div>
-      <hr>
-      <table style="width: 500px;margin: auto;">
+
+    <div style="width: 60%; margin: auto; padding: 60px;">
+      <div id="a" class="a"></div>
+      <hr />
+      <table style="width: 500px; margin: auto;">
         <tr>
-          <td><form>
-            <div class="form-group">
-              <label for="formControlRange" style="color: red;">RED（紅）</label>
-              <input type="range" class="form-control-range" id="formControlRange" min="0" max="255" step="1" value="" onchange="chg()">
-            </div>
-          </form></td>
-          <td style="width: 30%;">  <button class="btn btn-danger" onmousedown="add()">－</button> 
-            <button class="btn btn-danger">＋</button></td>
+          <td>
+            <form>
+              <div class="form-group">
+                <label for="formControlRange" style="color: red;"
+                  >RED（紅）</label
+                >
+                <input
+                  type="range"
+                  class="form-control-range"
+                  id="formControlRange"
+                  min="0"
+                  max="255"
+                  step="1"
+                  onmousemove="chg()"
+                />
+              </div>
+            </form>
+          </td>
+          <td style="width: 30%;">
+            <button class="btn btn-danger" onmousedown="add()">－</button>
+            <button class="btn btn-danger" onmousedown="plus()">＋</button>
+          </td>
         </tr>
         <tr>
-          <td><form>
-            <div class="form-group">
-              <label for="formControlRange" style="color: green;">GREEN（綠）</label>
-              <input type="range" class="form-control-range " id="formControlRange1" min="0" max="255" step="1" value=""> 
-            </div>
-          </form></td>
-          <td>  <button class="btn btn-success">－</button>
-            <button class="btn btn-success">＋</button></td>
+          <td>
+            <form>
+              <div class="form-group">
+                <label for="formControlRange" style="color: green;"
+                  >GREEN（綠）</label
+                >
+                <input
+                  type="range"
+                  class="form-control-range"
+                  id="formControlRange1"
+                  min="0"
+                  max="255"
+                  step="1"
+                  onmousemove="chg()"
+                />
+              </div>
+            </form>
+          </td>
+          <td>
+            <button class="btn btn-success">－</button>
+            <button class="btn btn-success">＋</button>
+          </td>
         </tr>
         <tr>
-          <td><form>
-            <div class="form-group">
-              <label for="formControlRange" style="color: blue;">BLUE（藍）</label>
-              <input type="range" class="form-control-range" id="formControlRange2" min="0" max="255" step="1" value="">
-            </div>
-          </form></td>
-          <td>  <button class="btn btn-primary">－</button>
-           <button class="btn btn-primary">＋</button></td>
+          <td>
+            <form>
+              <div class="form-group">
+                <label for="formControlRange" style="color: blue;"
+                  >BLUE（藍）</label
+                >
+                <input
+                  type="range"
+                  class="form-control-range"
+                  id="formControlRange2"
+                  min="0"
+                  max="255"
+                  step="1"
+                  onmousemove="chg()"
+                />
+              </div>
+            </form>
+          </td>
+          <td>
+            <button class="btn btn-primary">－</button>
+            <button class="btn btn-primary">＋</button>
+          </td>
         </tr>
       </table>
-      
-    <!-- js需要做一個function來轉換16進制的數字 -->
-<script>
-var r=120;
-var g=200;
-var b=250;
-var r_1 = document.getElementById("formControlRange").value; //range的值
-var g_1 = document.getElementById("formControlRange1").value;
-var b_1 = document.getElementById("formControlRange2").value;
-//轉進制
-var r1 =r.toString(16); //進制轉換括號後面的數字可填寫 2 8 10 16
-var g1 =g.toString(16);
-var b1 =b.toString(16);
-var color1 =`${r1}`+`${g1}`+`${b1}`;
+
+      <!-- js需要做一個function來轉換16進制的數字 -->
+      <script>
+        var r = 120;
+        var g = 200;
+        var b = 250;
+        var r_1 = document.getElementById("formControlRange").value * 1; //range的值
+        var g_1 = document.getElementById("formControlRange1").value * 1;
+        var b_1 = document.getElementById("formControlRange2").value * 1;
+        //轉進制
+        var r1 = r.toString(16); //進制轉換括號後面的數字可填寫 2 8 10 16
+        var g1 = g.toString(16);
+        var b1 = b.toString(16);
+        var color1 = `${r1}` + `${g1}` + `${b1}`;
+
+        //試試看用for迴圈
+
+        function chg() {
+          r = document.getElementById("formControlRange").value * 1; //range的值
+          g = document.getElementById("formControlRange1").value * 1;
+          b = document.getElementById("formControlRange2").value * 1;
+          aa = document.getElementById("a").style.background =
+            "rgb(" + r + "," + g + "," + b + ")";
+          console.log(aa);
+        }
+
+        function plus(){
+          r = document.getElementById("formControlRange").value * 1; //range的值
+          g = document.getElementById("formControlRange1").value * 1;
+          b = document.getElementById("formControlRange2").value * 1;
+          
 
 
-//試試看用for迴圈
-
-function chg(){
-   r_1 = document.getElementById("formControlRange").value; //range的值
- g_1 = document.getElementById("formControlRange1").value;
- b_1 = document.getElementById("formControlRange2").value;
-  r = r_1;
-  g = r_1;
-  b = r_1;
-  document.getElementById("a").style.backgroundColor=`#`+`${color1}`;
-}
+        }
 
 
 
 
 
 
-//切換顏色的功能
-function colorful(){
-document.getElementById("a").style.backgroundColor=`#`+`${color1}`;
-}
-
-</script>
-    <!-- 最後再將結果顯示在背景 -->
 
 
-  </div>
+
+
+        //切換顏色的功能
+        function colorful() {
+          document.getElementById("a").style.background = `#` + `${color1}`;
+        }
+      </script>
+      <!-- 最後再將結果顯示在背景 -->
+    </div>
   </body>
 </html>
