@@ -1,184 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>color</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-      crossorigin="anonymous"
-    ></script>
-    <style>
-      .a {
-        height: 200px;
-        width: 200px;
-        margin: auto;
-        background-color: cadetblue;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>color</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+  <style>
+    .a {
+      height: 200px;
+      width: 200px;
+      margin: auto;
+      background-color: cadetblue;
+    }
+  </style>
+</head>
+
+<body style="background-color: bisque;">
+  <!-- 顏色的地方可以試著用變數去做替換 -->
+
+  <div style="width: 60%; margin: auto; padding: 60px;">
+    <div id="a" class="a"></div>
+    <hr />
+    <table style="width: 500px; margin: auto;">
+      <tr>
+        <td>
+          <form>
+            <div class="form-group">
+              <label for="formControlRange" style="color: red;">RED（紅）</label>
+              <input type="range" class="form-control-range" id="formControlRange" min="0" max="255" step="1"
+                onmousemove="chg()" />
+            </div>
+          </form>
+        </td>
+        <td style="width: 30%;">
+          <button class="btn btn-danger" onmousedown="add_op()" onmouseup="less_clo()">－</button>
+          <button class="btn btn-danger">＋</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <form>
+            <div class="form-group">
+              <label for="formControlRange" style="color: green;">GREEN（綠）</label>
+              <input type="range" class="form-control-range" id="formControlRange1" min="0" max="255" step="1"
+                onmousemove="chg()" />
+            </div>
+          </form>
+        </td>
+        <td>
+          <button class="btn btn-success">－</button>
+          <button class="btn btn-success">＋</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <form>
+            <div class="form-group">
+              <label for="formControlRange" style="color: blue;">BLUE（藍）</label>
+              <input type="range" class="form-control-range" id="formControlRange2" min="0" max="255" step="1"
+                onmousemove="chg()" />
+            </div>
+          </form>
+        </td>
+        <td>
+          <button class="btn btn-primary">－</button>
+          <button class="btn btn-primary">＋</button>
+        </td>
+      </tr>
+    </table>
+
+    <!-- js需要做一個function來轉換16進制的數字 -->
+    <script>
+      var r = 120;
+      var g = 200;
+      var b = 250;
+      var r_1 = document.getElementById("formControlRange").value * 1; //range的值
+      var g_1 = document.getElementById("formControlRange1").value * 1;
+      var b_1 = document.getElementById("formControlRange2").value * 1;
+      //轉進制
+      var r1 = r.toString(16); //進制轉換括號後面的數字可填寫 2 8 10 16
+      var g1 = g.toString(16);
+      var b1 = b.toString(16);
+      var color1 = `${r1}` + `${g1}` + `${b1}`;
+
+      function chg() {
+        r = document.getElementById("formControlRange").value * 1; //range的值
+        g = document.getElementById("formControlRange1").value * 1;
+        b = document.getElementById("formControlRange2").value * 1;
+        aa = document.getElementById("a").style.background =
+          "rgb(" + r + "," + g + "," + b + ")";
+        console.log(aa);
       }
-    </style>
-  </head>
-  <body style="background-color: bisque;">
-    <!-- 顏色的地方可以試著用變數去做替換 -->
-
-    <div style="width: 60%; margin: auto; padding: 60px;">
-      <div id="a" class="a"></div>
-      <hr />
-      <table style="width: 500px; margin: auto;">
-        <tr>
-          <td>
-            <form>
-              <div class="form-group">
-                <label for="formControlRange" style="color: red;"
-                  >RED（紅）</label
-                >
-                <input
-                  type="range"
-                  class="form-control-range"
-                  id="formControlRange"
-                  min="0"
-                  max="255"
-                  step="1"
-                  onmousemove="chg()"
-                />
-              </div>
-            </form>
-          </td>
-          <td style="width: 30%;">
-            <button class="btn btn-danger" onmousedown="add_op()" onmouseup="less_clo()">－</button>
-            <button class="btn btn-danger" >＋</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <form>
-              <div class="form-group">
-                <label for="formControlRange" style="color: green;"
-                  >GREEN（綠）</label
-                >
-                <input
-                  type="range"
-                  class="form-control-range"
-                  id="formControlRange1"
-                  min="0"
-                  max="255"
-                  step="1"
-                  onmousemove="chg()"
-                />
-              </div>
-            </form>
-          </td>
-          <td>
-            <button class="btn btn-success">－</button>
-            <button class="btn btn-success">＋</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <form>
-              <div class="form-group">
-                <label for="formControlRange" style="color: blue;"
-                  >BLUE（藍）</label
-                >
-                <input
-                  type="range"
-                  class="form-control-range"
-                  id="formControlRange2"
-                  min="0"
-                  max="255"
-                  step="1"
-                  onmousemove="chg()"
-                />
-              </div>
-            </form>
-          </td>
-          <td>
-            <button class="btn btn-primary">－</button>
-            <button class="btn btn-primary">＋</button>
-          </td>
-        </tr>
-      </table>
-
-      <!-- js需要做一個function來轉換16進制的數字 -->
-      <script>
-        var r = 120;
-        var g = 200;
-        var b = 250;
-        var r_1 = document.getElementById("formControlRange").value * 1; //range的值
-        var g_1 = document.getElementById("formControlRange1").value * 1;
-        var b_1 = document.getElementById("formControlRange2").value * 1;
-        //轉進制
-        var r1 = r.toString(16); //進制轉換括號後面的數字可填寫 2 8 10 16
-        var g1 = g.toString(16);
-        var b1 = b.toString(16);
-        var color1 = `${r1}` + `${g1}` + `${b1}`;
-
-        //試試看用for迴圈
-
-        function chg() {
-          r = document.getElementById("formControlRange").value * 1; //range的值
-          g = document.getElementById("formControlRange1").value * 1;
-          b = document.getElementById("formControlRange2").value * 1;
-          aa = document.getElementById("a").style.background =
-            "rgb(" + r + "," + g + "," + b + ")";
-          console.log(aa);
-        }
-
-        
-        var timeStart, timeEnd, time; //申明全局變數
-
-        function getTimeNow() {
-          //獲取此刻時間
-          var now = new Date();
-          return now.getTime();
-        }
-        function add_op() {
-          //滑鼠按下時觸發
-          timeStart = getTimeNow(); //獲取滑鼠按下時的時間
-          time = setInterval(function () //setInterval會每100毫秒執行一次
-          {
-            timeEnd = getTimeNow(); //也就是每100毫秒獲取一次時間
-            if (timeEnd - timeStart > 1000) {
-              //如果此時檢測到的時間與第一次獲取的時間差有1000毫秒
-              clearInterval(time); //便不再繼續重覆此函數 （clearInterval取消周期性執行）
-
-       
-                r = document.getElementById("formControlRange").value * 1; //range的值
-          document.getElementById("formControlRange").value = `${r}` - 1;
-        
-         
 
 
-             
-            }
-          }, 100);
-        }
-        function less_clo() {
-          clearInterval(time); //如果按下時間不到1000毫秒便彈起，
-        }
 
-        //切換顏色的功能
-        function colorful() {
-          document.getElementById("a").style.background = `#` + `${color1}`;
-        }
-      </script>
-      <!-- 最後再將結果顯示在背景 -->
-    </div>
-  </body>
+      //切換顏色的功能
+      function colorful() {
+        document.getElementById("a").style.background = `#` + `${color1}`;
+      }
+    </script>
+    <!-- 最後再將結果顯示在背景 -->
+  </div>
+</body>
+
 </html>
