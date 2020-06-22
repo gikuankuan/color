@@ -44,8 +44,8 @@
           </form>
         </td>
         <td style="width: 30%;">
-          <button class="btn btn-danger" onmousedown="r_less()" onmouseup="less_clo()">－</button>
-          <button class="btn btn-danger" onmousedown="r_plus()" onmouseup="less_clo()">＋</button>
+          <button class="btn btn-danger" onmousedown="r_less()" onmouseup="less_clo()" onmouseout="less_clo()">－</button>
+          <button class="btn btn-danger" onmousedown="r_plus()" onmouseup="less_clo()" onmouseout="less_clo()">＋</button>
         </td>
       </tr>
       <tr>
@@ -59,8 +59,8 @@
           </form>
         </td>
         <td>
-          <button class="btn btn-success" onmousedown="g_less()" onmouseup="less_clo()">－</button>
-          <button class="btn btn-success" onmousedown="g_plus()" onmouseup="less_clo()">＋</button>
+          <button class="btn btn-success" onmousedown="g_less()" onmouseup="less_clo()" onmouseout="less_clo()">－</button>
+          <button class="btn btn-success" onmousedown="g_plus()" onmouseup="less_clo()" onmouseout="less_clo()">＋</button>
         </td>
       </tr>
       <tr>
@@ -74,13 +74,13 @@
           </form>
         </td>
         <td>
-          <button class="btn btn-primary" onmousedown="b_less()" onmouseup="less_clo()">－</button>
-          <button class="btn btn-primary" onmousedown="b_plus()" onmouseup="less_clo()">＋</button>
+          <button class="btn btn-primary" onmousedown="b_less()" onmouseup="less_clo()" onmouseout="less_clo()">－</button>
+          <button class="btn btn-primary" onmousedown="b_plus()" onmouseup="less_clo()" onmouseout="less_clo()">＋</button>
          
         </td>
         <tr>
 
-          <td colspan="2"> <button type="button" class="btn btn-info btn-lg m-2 " onmousedown="all_less()" onmouseup="less_clo()" >全部一起減少</button><button type="button"  class="btn btn-info btn-lg m-2 " onmousedown="all_plus()" onmouseup="less_clo()" >全部一起增加</button></td>
+          <td colspan="2"> <button type="button" class="btn btn-info btn-lg m-2 " onmousedown="all_less()" onmouseup="less_clo()" onmouseout="less_clo()">全部一起減少</button><button type="button"  class="btn btn-info btn-lg m-2 " onmousedown="all_plus()" onmouseup="less_clo()" onmouseout="less_clo()">全部一起增加</button></td>
       
         </tr>
       </tr>
@@ -152,10 +152,11 @@
             document.getElementById("formControlRange").value = q + 1;
             console.log(q);
             chg();
-
+          
           }
         }, 10);
       }
+    
       //紅色增加
       function g_less() {
         //滑鼠按下時觸發
@@ -171,6 +172,7 @@
             chg();
           }
         }, 10);
+
       }
 
       function g_plus() {
@@ -264,23 +266,11 @@
 
             b = document.getElementById("formControlRange2").value * 1; //range的值
             document.getElementById("formControlRange2").value = b + 1;
-            console.log(q);
             chg();
 
           }
         }, 10);
       }
-
-
-
-
-
-
-
-
-
-
-
 
 
       function getRandom(min, max) {
